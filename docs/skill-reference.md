@@ -1,7 +1,7 @@
 # Skill Reference
 
 ## How Skills Work
-Skills are markdown files that Claude Code reads automatically. This project bundles **9 core skills** in `.claude/skills/` — they load automatically when Claude opens the project. Optional skills must be installed by the user at `~/.claude/skills/` or `~/.agents/skills/`.
+Skills are markdown files that Claude Code reads automatically. This project bundles **10 core skills** in `.claude/skills/` — they load automatically when Claude opens the project. Optional skills must be installed by the user at `~/.claude/skills/` or `~/.agents/skills/`.
 
 ---
 
@@ -17,6 +17,7 @@ Skills are markdown files that Claude Code reads automatically. This project bun
 | `building-components` | `.claude/skills/building-components/` | Guide for building modern, accessible, composable UI components. Includes 15 reference docs covering accessibility, composition, polymorphism, design tokens, and more. |
 | `web-design-guidelines` | `.claude/skills/web-design-guidelines/` | Review UI code against Vercel's Web Interface Guidelines. Fetches latest rules and audits compliance. |
 | `playwright-cli` | `.claude/skills/playwright-cli/` | Browser automation for screenshots and visual QA. Includes 7 reference docs. |
+| `chrome-bridge-automation` | `.claude/skills/chrome-bridge-automation/` | Fallback visual QA — connects to user's Chrome via Midscene extension. Vision-driven screenshots. |
 | `seo-audit` | `.claude/skills/seo-audit/` | Technical SEO analysis, meta tags, heading structure. |
 
 These are always available — no installation needed.

@@ -16,7 +16,7 @@ If unsure, ask: "Would you prefer English or Spanish? / Prefieres ingles o espan
 
 ## Skills
 
-**9 core skills are bundled** in `.claude/skills/` and load automatically — no installation needed:
+**10 core skills are bundled** in `.claude/skills/` and load automatically — no installation needed:
 
 | Bundled Skill | Purpose |
 |---------------|---------|
@@ -28,6 +28,7 @@ If unsure, ask: "Would you prefer English or Spanish? / Prefieres ingles o espan
 | `building-components` | Guide for building modern, accessible, composable UI components |
 | `web-design-guidelines` | Review UI against Vercel's Web Interface Guidelines |
 | `playwright-cli` | Visual QA via browser screenshots |
+| `chrome-bridge-automation` | Fallback visual QA — connects to user's Chrome browser via Midscene. Vision-driven, no DOM needed. |
 | `seo-audit` | SEO checks — meta tags, headings, alt text, structured data |
 
 **3 optional skills** (NOT bundled — only available if the user has installed them separately):
@@ -165,7 +166,9 @@ Make it fully responsive (mobile-first). Test at 375px, 768px, 1024px, 1440px.
 cd site && npm run dev
 ```
 
-**Visual QA with playwright-cli** (bundled — should be available):
+**Visual QA — try in this order:**
+
+**Option 1: playwright-cli** (fastest, headless):
 ```bash
 playwright-cli open http://localhost:3000
 playwright-cli screenshot --filename=preview-desktop.png
@@ -175,7 +178,17 @@ playwright-cli resize 768 1024
 playwright-cli screenshot --filename=preview-tablet.png
 playwright-cli close
 ```
-If playwright-cli doesn't work (e.g., missing browser binary), tell the user: "Open http://localhost:3000 in your browser to see the preview."
+
+**Option 2: chrome-bridge-automation** (if playwright-cli fails — e.g., missing browser binary):
+Uses the user's actual Chrome browser via Midscene. Connect, screenshot, and review:
+```bash
+npx @midscene/web@1 --bridge connect --url http://localhost:3000
+npx @midscene/web@1 --bridge take_screenshot
+npx @midscene/web@1 --bridge disconnect
+```
+
+**Option 3: Manual** (if neither tool works):
+Tell the user: "Open http://localhost:3000 in your browser to see the preview."
 
 **Run SEO audit** (bundled `seo-audit` skill):
 Review the built page against SEO best practices — check title tags, meta descriptions, heading hierarchy, image alt text, and structured data. Fix any issues before showing to the user.

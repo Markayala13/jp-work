@@ -141,7 +141,7 @@ You now have:
 
 ## Bundled Skills
 
-This project comes with **9 professional skills pre-installed** in `.claude/skills/`. They load automatically when Claude opens the project — you don't need to install anything extra.
+This project comes with **10 professional skills pre-installed** in `.claude/skills/`. They load automatically when Claude opens the project — you don't need to install anything extra.
 
 | Skill | What It Does |
 |-------|-------------|
@@ -153,6 +153,7 @@ This project comes with **9 professional skills pre-installed** in `.claude/skil
 | `building-components` | Guide for building modern, accessible UI components |
 | `web-design-guidelines` | Review your page against Vercel's Web Interface Guidelines |
 | `playwright-cli` | Browser automation so Claude can screenshot and check the design |
+| `chrome-bridge-automation` | Fallback browser — connects to your Chrome to check the design visually |
 | `seo-audit` | SEO analysis for meta tags, headings, and search visibility |
 
 <details>

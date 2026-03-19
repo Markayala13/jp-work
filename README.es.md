@@ -139,7 +139,7 @@ Ahora tienes:
 
 ## Skills Incluidos
 
-Este proyecto viene con **9 skills profesionales pre-instalados** en `.claude/skills/`. Se cargan automaticamente cuando Claude abre el proyecto — no necesitas instalar nada extra.
+Este proyecto viene con **10 skills profesionales pre-instalados** en `.claude/skills/`. Se cargan automaticamente cuando Claude abre el proyecto — no necesitas instalar nada extra.
 
 | Skill | Que hace |
 |-------|---------|
@@ -151,6 +151,7 @@ Este proyecto viene con **9 skills profesionales pre-instalados** en `.claude/sk
 | `building-components` | Guia para construir componentes de UI modernos y accesibles |
 | `web-design-guidelines` | Revisa tu pagina contra las guias de Web Interface de Vercel |
 | `playwright-cli` | Automatizacion de navegador para que Claude tome capturas y revise el diseno |
+| `chrome-bridge-automation` | Navegador de respaldo — se conecta a tu Chrome para revisar el diseno visualmente |
 | `seo-audit` | Analisis SEO para meta tags, encabezados y visibilidad en buscadores |
 
 <details>
