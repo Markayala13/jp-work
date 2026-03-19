@@ -57,7 +57,7 @@ After Round 2, **PAUSE and present the design direction**: "Here's what I'm thin
     - If yes: What fields? (Name, email, message is standard. Phone? Company?)
     - Options:
       - **Simple (default):** A "mailto:" link styled as a contact section — no backend needed.
-      - **Form with Formspree:** Free service, no backend needed. User creates account at formspree.io and provides form ID.
+      - **Form with Formspree:** Free service, no backend needed. Tell the user: "Go to formspree.io, create a free account, create a form, and give me the form ID (it looks like 'xpznqkdl')." If user doesn't want to do this now, use mailto: as default and leave a TODO comment.
     - If user just wants an email link or phone number, that works too.
 
 11. **Got a tagline or slogan?**

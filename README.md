@@ -259,12 +259,16 @@ claude-webkit/
 ├── CLAUDE.md                        # Instructions for Claude (the brain)
 ├── .claude/
 │   ├── settings.local.json          # Tool permissions
-│   └── skills/                      # 6 bundled skills (auto-loaded)
+│   └── skills/                      # 10 bundled skills (auto-loaded)
 │       ├── frontend-design/         # Design methodology + 7 reference docs
 │       ├── shadcn-ui/               # Component library guide
 │       ├── humanizer/               # AI writing pattern removal
 │       ├── vercel-react-best-practices/  # 62 performance rules
+│       ├── vercel-deploy/           # Sandbox deploy (no account needed)
+│       ├── building-components/     # Accessible UI component patterns
+│       ├── web-design-guidelines/   # Vercel Web Interface Guidelines
 │       ├── playwright-cli/          # Browser automation + 7 references
+│       ├── chrome-bridge-automation/ # Chrome visual QA fallback
 │       └── seo-audit/              # SEO analysis + references
 ├── docs/
 │   ├── system-prompt.md             # Agent personality (English)

@@ -53,11 +53,17 @@ If the user provides reference URLs, use the `web-reader` skill to analyze them.
 **Important:** After Round 2 (Visual Direction), PAUSE and present the design direction to the user. Get their approval BEFORE continuing to Round 3 (Content). This ensures content decisions are informed by the approved design.
 
 ### Phase 2: Design System
-Use `ui-ux-pro-max` to generate color palette, font pairing, and style recommendations based on the user's answers. Present the design direction to the user for approval before building. Show them specific colors (hex codes), fonts (Google Font names), and the general layout approach.
+**Note:** The design direction was already presented and approved during the Round 2 pause in Phase 1. Phase 2 refines that into a complete design system.
 
-If `ui-ux-pro-max` is unavailable, make recommendations based on `docs/design-guide.md` and present them.
+Use `ui-ux-pro-max` (if installed) to generate specific recommendations. If unavailable, use `docs/design-guide.md` — pick colors from the industry palette table, fonts from the vibe pairing table, and tell the user what you chose and why.
 
-Consult `docs/landing-page-patterns.md` to select the best page archetype for the user's business type.
+Finalize and present the complete design system:
+- Exact hex codes for primary, accent, and neutral colors
+- Google Font names for headline and body
+- Page archetype from `docs/landing-page-patterns.md` (explain why it fits their business)
+- Section order based on the archetype
+
+If the user wants changes, iterate here before moving to Phase 3.
 
 ### Phase 3: Scaffold
 
@@ -116,7 +122,18 @@ Build the landing page inside `site/`:
 - Use Google Fonts via `next/font/google` with `display: "swap"` and CSS variables
 
 #### Section Order
-Use the archetype from `docs/landing-page-patterns.md` that best fits the user's business. Default order: Hero > Features/Services > Social Proof > CTA > Footer.
+Use the archetype from `docs/landing-page-patterns.md` that best fits the user's business type. Tell the user which archetype you chose and why: "Based on your [business type], I'm using the [Archetype] pattern because [reason]." Default order: Hero > Features/Services > Social Proof > CTA > Footer.
+
+#### Content Mapping (Questionnaire → Page)
+- **Hero `<h1>` headline:** Based on the user's tagline (Q11). If none, derive from their main benefit (Q9). Adapt for impact — short, punchy, memorable.
+- **Hero subheadline:** One sentence from Q2 (what they do) + Q3 (who they serve).
+- **CTA button text:** From Q8 (main action). Use the exact words the user chose.
+- **Features section:** From Q9 (3-4 key things to highlight).
+- **Testimonials:** From Q12 (user-provided or placeholder).
+- **Contact section:** From Q10 (mailto, Formspree, or phone).
+- **Social links in footer:** From Q13.
+- **Meta title:** Business name + tagline. Meta description from Q2.
+- **Page language:** From Q17. All content, labels, meta tags, and placeholders in that language.
 
 #### Accessibility (WCAG AA minimum)
 - Semantic HTML: `<header>`, `<nav>`, `<main>`, `<section>`, `<footer>`
@@ -138,16 +155,21 @@ Use the archetype from `docs/landing-page-patterns.md` that best fits the user's
 #### Contact Forms
 If the user wants a contact form:
 - **Simple (default):** A `mailto:` link styled as a contact section — no backend needed
-- **Formspree (upgrade):** Free service, no backend. User creates account at formspree.io:
+- **Formspree (upgrade):** Free service, no backend. Ask the user to create an account at formspree.io and give you their form ID. Then use:
   ```tsx
   <form action="https://formspree.io/f/{form-id}" method="POST">
-    <input type="text" name="name" placeholder="Name" required />
-    <input type="email" name="email" placeholder="Email" required />
-    <textarea name="message" placeholder="Message" required />
+    <label htmlFor="name">Name</label>
+    <input id="name" type="text" name="name" required />
+    <label htmlFor="email">Email</label>
+    <input id="email" type="email" name="email" required />
+    <label htmlFor="message">Message</label>
+    <textarea id="message" name="message" required />
     <button type="submit">Send</button>
   </form>
   ```
+- If the page is in Spanish, localize labels: "Nombre", "Correo", "Mensaje", "Enviar"
 - If user doesn't want to set up Formspree now, use mailto: and leave a `// TODO: Replace with Formspree` comment
+- **Every form input must have a visible `<label>`** — never use placeholder as the only label (accessibility requirement)
 
 #### Footer Credit
 - Text: "Built with Claude Web Builder by Tododeia"
@@ -179,15 +201,16 @@ playwright-cli screenshot --filename=preview-tablet.png
 playwright-cli close
 ```
 
-**Option 2: chrome-bridge-automation** (if playwright-cli fails — e.g., missing browser binary):
-Uses the user's actual Chrome browser via Midscene. Connect, screenshot, and review:
+**Option 2: chrome-bridge-automation** (if playwright-cli fails AND user has Midscene Chrome Extension + API key configured):
+Uses the user's actual Chrome browser via Midscene. Only suggest this if the user is technical or already has Midscene set up.
 ```bash
 npx @midscene/web@1 --bridge connect --url http://localhost:3000
 npx @midscene/web@1 --bridge take_screenshot
 npx @midscene/web@1 --bridge disconnect
 ```
+If the user doesn't have Midscene configured, skip to Option 3.
 
-**Option 3: Manual** (if neither tool works):
+**Option 3: Manual** (most common fallback for first-time users):
 Tell the user: "Open http://localhost:3000 in your browser to see the preview."
 
 **Run SEO audit** (bundled `seo-audit` skill):

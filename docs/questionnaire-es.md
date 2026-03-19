@@ -57,7 +57,7 @@ Despues de la Ronda 2, **PAUSA y presenta la direccion de diseno**: "Mira, esto 
     - Si quiere: Que campos? (Nombre, email, mensaje es lo estandar. Telefono? Empresa?)
     - Opciones:
       - **Simple (default):** Un enlace "mailto:" con estilo de seccion de contacto — no necesita backend.
-      - **Formulario con Formspree:** Servicio gratuito, sin backend. El usuario crea cuenta en formspree.io y da su form ID.
+      - **Formulario con Formspree:** Servicio gratuito, sin backend. Dile al usuario: "Ve a formspree.io, crea una cuenta gratis, crea un formulario, y dame el form ID (se ve asi: 'xpznqkdl')." Si no quiere hacerlo ahora, usa mailto: como default y deja un comentario TODO.
     - Si solo quiere un link de email o telefono, tambien funciona.
 
 11. **Tienes un eslogan o frase?**
