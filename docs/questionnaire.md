@@ -37,7 +37,9 @@ After Round 1, summarize: "Got it — [business] helps [audience] with [service]
    - Offer options: professional, playful, bold, elegant, minimal, warm, modern, edgy, luxurious.
    - Default: "Professional and approachable."
 
-After Round 2, present the design direction: "Here's what I'm thinking — [color palette], [font pairing], [general layout approach]. Sound good?"
+After Round 2, **PAUSE and present the design direction**: "Here's what I'm thinking — [color palette with specific hex codes], [font pairing with names], [general layout approach]. Sound good?"
+
+**Wait for user approval before continuing to Round 3.** This ensures the content questions in Round 3 are informed by the approved design direction.
 
 ---
 
@@ -51,11 +53,22 @@ After Round 2, present the design direction: "Here's what I'm thinking — [colo
    - These become the features/services section.
    - Default: Generate from business description + industry norms.
 
-10. **Got a tagline or slogan?**
+10. **Do you want a contact form on the page?**
+    - If yes: What fields? (Name, email, message is standard. Phone? Company?)
+    - Options:
+      - **Simple (default):** A "mailto:" link styled as a contact section — no backend needed.
+      - **Form with Formspree:** Free service, no backend needed. User creates account at formspree.io and provides form ID.
+    - If user just wants an email link or phone number, that works too.
+
+11. **Got a tagline or slogan?**
     - Default: Write one. Run through humanizer.
 
-11. **Any testimonials, reviews, or social proof?**
+12. **Any testimonials, reviews, or social proof?**
     - Default: Create a placeholder testimonials section. Use realistic but clearly placeholder names.
+
+13. **Any social media links to include?**
+    - Instagram, X/Twitter, Facebook, LinkedIn, TikTok, YouTube, etc.
+    - Default: Placeholder social icons in footer — user fills in the URLs later.
 
 After Round 3, recap: "I have everything I need for content. A couple more technical questions."
 
@@ -63,16 +76,26 @@ After Round 3, recap: "I have everything I need for content. A couple more techn
 
 ## Round 4: Technical (keep brief)
 
-12. **Do you have a logo?**
+14. **Do you have a logo?**
     - Accept: file path, URL, or "no"
     - Default: Text-only logo using the business name with the headline font.
 
-13. **Any specific images to use?**
+15. **Any specific images to use?**
     - Accept: file paths, URLs, or "no"
+    - Supported formats: JPG (photos), PNG (logos with transparency), SVG (icons/logos), WebP (modern compression)
+    - If the user provides URLs, download them: `curl -o site/public/images/photo.jpg "URL"`
     - Default: No stock photos. Use geometric patterns, gradients, or abstract decorative elements that match the design system.
 
-14. **Want me to deploy it to a live URL when we're done?**
-    - Explain: "I can deploy it to Vercel — you'll get a link you can share."
+16. **Do you have a favicon (the small icon in browser tabs)?**
+    - Accept: file path, URL, or "no"
+    - Default: Generate a simple favicon from the brand colors using `site/src/app/icon.tsx`.
+
+17. **What language should the page be in?**
+    - Default: Same language the user has been speaking in.
+    - Note: All page content (headlines, body text, CTAs, meta tags) will be in the chosen language.
+
+18. **Want me to deploy it to a live URL when we're done?**
+    - Explain: "I can deploy it to Vercel — you'll get a link you can share with anyone."
     - Default: Yes.
 
 ---
@@ -85,6 +108,8 @@ When the user defers any decision:
 - **Copy**: Generate based on their answers, run through humanizer.
 - **Layout**: Use proven section order: Hero > Features > Social Proof > CTA > Footer.
 - **Style**: Match to their industry: law firm = refined/serif, tech startup = clean/modern, restaurant = warm/organic, creative agency = bold/experimental.
+- **Contact form**: Use a mailto: link styled as a contact section.
+- **Social media**: Add placeholder icons in footer.
 
 Always tell the user what you chose and why, briefly: "I went with a warm palette — terracotta and off-white — because it fits the artisan food space well."
 
@@ -97,8 +122,11 @@ Summarize the full brief back to the user:
 - Target audience
 - Design direction (colors, fonts, vibe)
 - Main CTA
+- Contact method (form, mailto, phone)
 - Key sections/features
-- Assets (logo, images, or defaults)
+- Social media links
+- Assets (logo, images, favicon, or defaults)
+- Page language
 - Deploy: yes/no
 
 Ask: "Does this capture everything? I'll start building once you give me the green light."
