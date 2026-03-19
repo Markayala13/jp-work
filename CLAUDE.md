@@ -16,7 +16,7 @@ If unsure, ask: "Would you prefer English or Spanish? / Prefieres ingles o espan
 
 ## Skills
 
-Check which skills are available before starting. Use them during the build process:
+**6 core skills are bundled with this project** in `.claude/skills/`. They load automatically — no installation needed. The following skills are available:
 
 | Skill | Purpose | Fallback |
 |-------|---------|----------|
@@ -30,11 +30,9 @@ Check which skills are available before starting. Use them during the build proc
 | `web-reader` | Analyze reference URLs user provides | Skip reference analysis |
 | `deep-research` | Research user's industry for better copy | Generate copy from brief |
 
-To check availability: `ls ~/.claude/skills/<name>/SKILL.md 2>/dev/null || ls ~/.agents/skills/<name>/SKILL.md 2>/dev/null`
+The bundled skills (frontend-design, shadcn-ui, humanizer, vercel-react-best-practices, playwright-cli, seo-audit) are in `.claude/skills/` and load automatically. The optional skills (ui-ux-pro-max, web-reader, deep-research) must be installed separately by the user — if missing, skip them gracefully and use the fallback.
 
 See `docs/skill-reference.md` for full invocation examples and all `--domain` values.
-
-If a skill is missing, skip it gracefully and note what was skipped.
 
 ## Workflow
 

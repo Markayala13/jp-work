@@ -140,27 +140,31 @@ You now have:
 
 ---
 
+## Bundled Skills
+
+This project comes with **6 professional skills pre-installed** in `.claude/skills/`. They load automatically when Claude opens the project — you don't need to install anything extra.
+
+| Skill | What It Does |
+|-------|-------------|
+| `frontend-design` | Design methodology that makes designs look professional, not AI-generated |
+| `shadcn-ui` | Component library guide for polished UI with accessibility built in |
+| `humanizer` | Removes AI writing patterns so page copy sounds human |
+| `vercel-react-best-practices` | 62 performance rules for faster page load times |
+| `playwright-cli` | Browser automation so Claude can screenshot and check the design |
+| `seo-audit` | SEO analysis for meta tags, headings, and search visibility |
+
 <details>
-<summary><strong>Optional: Install Skills for Better Results</strong></summary>
+<summary><strong>Optional: Extra Skills for Even Better Results</strong></summary>
 
-Skills are like plugins for Claude Code. They give Claude extra knowledge about design, components, and web development. The builder works without them, but results are better with them.
-
-### What are skills?
-Skills are markdown files that teach Claude specific knowledge. They're installed in `~/.claude/skills/` on your computer.
-
-### Recommended skills
+These optional skills enhance the experience but are **not required**:
 
 | Skill | What It Does | How It Helps |
 |-------|-------------|-------------|
-| `frontend-design` | Design methodology | Makes designs look professional, not AI-generated |
-| `shadcn-ui` | Component library guide | Better UI components with accessibility built in |
-| `humanizer` | Removes AI writing patterns | Page copy sounds human, not robotic |
-| `ui-ux-pro-max` | Design intelligence | Color palettes, font pairings, style recommendations |
-| `playwright-cli` | Browser automation | Claude can take screenshots to check the design |
-| `vercel-react-best-practices` | Performance optimization | Faster page load times |
+| `ui-ux-pro-max` | Design intelligence database | AI-powered color palette, font pairing, and style recommendations |
+| `web-reader` | Web content extraction | Analyzes reference websites the user likes |
+| `deep-research` | Systematic web research | Better industry-specific copy and content |
 
-### How to install skills
-Check the [Claude Code skills documentation](https://docs.anthropic.com/en/docs/claude-code) for installation instructions for each skill.
+Check the [Claude Code skills documentation](https://docs.anthropic.com/en/docs/claude-code) for installation instructions.
 
 </details>
 
@@ -250,6 +254,15 @@ The `CLAUDE.md` file contains instructions that turn Claude Code into a guided w
 ```
 claude-webkit/
 ├── CLAUDE.md                        # Instructions for Claude (the brain)
+├── .claude/
+│   ├── settings.local.json          # Tool permissions
+│   └── skills/                      # 6 bundled skills (auto-loaded)
+│       ├── frontend-design/         # Design methodology + 7 reference docs
+│       ├── shadcn-ui/               # Component library guide
+│       ├── humanizer/               # AI writing pattern removal
+│       ├── vercel-react-best-practices/  # 62 performance rules
+│       ├── playwright-cli/          # Browser automation + 7 references
+│       └── seo-audit/              # SEO analysis + references
 ├── docs/
 │   ├── system-prompt.md             # Agent personality (English)
 │   ├── system-prompt-es.md          # Agent personality (Spanish)
