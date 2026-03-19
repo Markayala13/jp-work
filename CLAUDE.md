@@ -135,7 +135,7 @@ Build the landing page inside `site/`. Write ALL files without asking for per-se
 
 #### Design & Code
 - Apply `frontend-design` skill guidelines (or `docs/design-guide.md`)
-- Apply `vercel-react-best-practices` if available
+- Apply `vercel-react-best-practices` guidelines
 - See `docs/performance-checklist.md` for Core Web Vitals optimization
 - See `docs/accessibility-checklist.md` for WCAG AA compliance
 - Run ALL copy through `humanizer` skill (or manually check against AI patterns in `docs/design-guide.md`)
