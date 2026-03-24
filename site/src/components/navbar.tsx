@@ -6,18 +6,20 @@ import { Menu, X, Phone } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import MagneticButton from "@/components/magnetic-button";
-
-const navLinks = [
-  { label: "Services", href: "#services" },
-  { label: "Projects", href: "#gallery" },
-  { label: "About", href: "#about" },
-  { label: "Testimonials", href: "#testimonials" },
-  { label: "Contact", href: "#contact" },
-];
+import { useLanguage } from "@/context/language-context";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const { lang, toggle, t } = useLanguage();
+
+  const navLinks = [
+    { label: t.nav.services,     href: "#services" },
+    { label: t.nav.projects,     href: "#gallery" },
+    { label: t.nav.about,        href: "#about" },
+    { label: t.nav.testimonials, href: "#testimonials" },
+    { label: t.nav.contact,      href: "#contact" },
+  ];
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -26,13 +28,23 @@ export default function Navbar() {
   }, []);
 
   useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
+    document.body.style.overflow = isOpen ? "hidden" : "";
     return () => { document.body.style.overflow = ""; };
   }, [isOpen]);
+
+  const LangToggle = () => (
+    <button
+      onClick={toggle}
+      className={`text-xs font-semibold tracking-widest border rounded-full px-3 py-1 transition-all duration-200 ${
+        isOpen || scrolled
+          ? "border-bark/20 text-bark/60 hover:border-forest hover:text-forest"
+          : "border-cream/30 text-cream/60 hover:border-cream hover:text-cream"
+      }`}
+      aria-label="Toggle language"
+    >
+      {lang === "en" ? "ES" : "EN"}
+    </button>
+  );
 
   return (
     <header
@@ -52,6 +64,7 @@ export default function Navbar() {
           </span>
         </a>
 
+        {/* Desktop */}
         <div className="hidden lg:flex items-center gap-10">
           {navLinks.map((link) => (
             <a
@@ -62,6 +75,7 @@ export default function Navbar() {
               {link.label}
             </a>
           ))}
+          <LangToggle />
           <MagneticButton>
             <a
               href="tel:+16784975337"
@@ -71,20 +85,25 @@ export default function Navbar() {
               )}
             >
               <Phone className="w-4 h-4" aria-hidden="true" />
-              Call Now
+              {t.nav.callNow}
             </a>
           </MagneticButton>
         </div>
 
-        <button
-          onClick={() => setIsOpen(!isOpen)}
-          className={`relative z-50 lg:hidden p-2 -mr-2 transition-colors duration-200 ${isOpen || scrolled ? "text-bark hover:text-forest" : "text-cream hover:text-cream/70"}`}
-          aria-label={isOpen ? "Close menu" : "Open menu"}
-          aria-expanded={isOpen}
-        >
-          {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-        </button>
+        {/* Mobile right side */}
+        <div className="flex items-center gap-3 lg:hidden">
+          <div className="relative z-50"><LangToggle /></div>
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className={`relative z-50 p-2 -mr-2 transition-colors duration-200 ${isOpen || scrolled ? "text-bark hover:text-forest" : "text-cream hover:text-cream/70"}`}
+            aria-label={isOpen ? "Close menu" : "Open menu"}
+            aria-expanded={isOpen}
+          >
+            {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
+        </div>
 
+        {/* Mobile menu */}
         <AnimatePresence>
           {isOpen && (
             <motion.div
@@ -103,11 +122,7 @@ export default function Navbar() {
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: -20 }}
-                    transition={{
-                      duration: 0.4,
-                      delay: 0.1 + i * 0.06,
-                      ease: [0.25, 1, 0.5, 1],
-                    }}
+                    transition={{ duration: 0.4, delay: 0.1 + i * 0.06, ease: [0.25, 1, 0.5, 1] }}
                     className="font-heading text-4xl font-light text-bark py-3 hover:text-forest transition-colors duration-300"
                   >
                     {link.label}
@@ -117,11 +132,7 @@ export default function Navbar() {
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -20 }}
-                  transition={{
-                    duration: 0.4,
-                    delay: 0.1 + navLinks.length * 0.06,
-                    ease: [0.25, 1, 0.5, 1],
-                  }}
+                  transition={{ duration: 0.4, delay: 0.1 + navLinks.length * 0.06, ease: [0.25, 1, 0.5, 1] }}
                   className="mt-8"
                 >
                   <a
@@ -133,7 +144,7 @@ export default function Navbar() {
                     )}
                   >
                     <Phone className="w-4 h-4" aria-hidden="true" />
-                    Call Now
+                    {t.nav.callNow}
                   </a>
                 </motion.div>
               </div>
