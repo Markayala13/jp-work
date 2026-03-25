@@ -52,7 +52,6 @@ export default function TestimonialsSection() {
                   </div>
                   <div>
                     <p className="text-sm font-medium text-cream/90">{meta.name}</p>
-                    <p className="text-xs text-cream/40">{meta.location}</p>
                   </div>
                 </div>
               </div>
